@@ -4,15 +4,15 @@ import { HeroCard } from './HeroCard';
 
 export const HeroList = ({ publisher }) => {
 
-    const heroes = getHeroesByPublisher( publisher );
+    const heroes = getHeroesByPublisher(publisher);
 
-  return (
-    <div class="row row-cols-4 g-4">
-        {
-            heroes.map( hero => {
-                return <HeroCard key={hero.id} { ...hero }/>
-            })
-        }
-    </div>
-  )
+    return (
+        <div class="row row-cols-4 g-4">
+            {
+                heroes.map(hero => {
+                    return <HeroCard key={hero.id} {...hero} />
+                })
+            }
+        </div>
+    )
 }
