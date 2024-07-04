@@ -1,15 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 export const HeroCard = (hero) => {
     
-    const img = `./assets/heroes/${hero.id}.jpg`
     const link = `/hero/${hero.id}`
 
     return (
         <div class="col">
             <div class="card">
-                <img src={img} class="card-img-top" alt={hero.id} />
+                <img src={hero.image} class="card-img-top" alt={hero.id} />
                 <div class="card-body">
                     <h3 class="card-title"> {hero.superhero} </h3>
                     <h5 class="card-title">{hero.alter_ego}</h5>
