@@ -28,6 +28,14 @@ export const Navbar = () => {
                     >
                         DC
                     </NavLink>
+
+                    <NavLink 
+                        className="nav-item nav-link" 
+                        to="/search"
+                        style={{ minWidth: '105px' }}
+                    >
+                        Search Hero
+                    </NavLink>
                 </div>
             </div>
 
