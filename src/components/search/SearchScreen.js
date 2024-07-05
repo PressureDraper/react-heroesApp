@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { heroes } from '../../data/heroes'
 import { HeroCard } from '../heroes/HeroCard';
 
@@ -14,16 +14,21 @@ export const SearchScreen = () => {
     const handleSearchSubmit = (event) => {
         event.preventDefault();
         const newHeroes = heroes.filter(hero => hero.superhero.toUpperCase().includes(values.value1.toUpperCase()));
+        
         setHeroes(newHeroes);
+        setValues({ ...values, value1: '' });
     }
 
     const handleSearchKeyDown = (e) => {
         setValues({ ...values, value2: e.target.value });
         const newHeroes = heroes.filter(hero => hero.superhero.toUpperCase().includes(values.value2.toUpperCase()));
-        setHeroes(newHeroes);
-    }
 
-    console.log(values);
+        if (e.target.value == '') {
+            setHeroes(heroes);
+        } else {
+            setHeroes(newHeroes);
+        }
+    }
 
     return (
         <div>
