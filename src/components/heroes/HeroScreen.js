@@ -1,12 +1,14 @@
-import React, { useMemo } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { Link, Redirect, useHistory, useParams } from 'react-router-dom'
 import { getHeroesById } from '../../selectors/getHeroById';
+import { UiContext } from '../../auth/UiContext';
 
 export const HeroScreen = () => {
 
     const params = useParams(); //get params from navbar
     const hero = useMemo(() => getHeroesById(params.heroeId), [params]); // avoid executing this var again if params aren't changed
     const history = useHistory(); //to manipulate web history and poisitioning
+    const { theme } = useContext(UiContext);
 
     if (!hero) {
         return <Redirect to={'/'} />
@@ -34,7 +36,7 @@ export const HeroScreen = () => {
                     <li className='list-group-item'> <b>Characters:</b> {hero.characters} </li>
                 </ul>
                 <div className='mt-4 col-12'>
-                    <button className='btn btn-outline-dark' style={{ width: '100%' }} onClick={handleReturn}>
+                    <button className={theme.theme === 'light' ? 'btn btn-outline-dark' : 'btn btn-outline-light'} style={{ width: '100%' }} onClick={handleReturn}>
                         Return
                     </button>
                 </div>

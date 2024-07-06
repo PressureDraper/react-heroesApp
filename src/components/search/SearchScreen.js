@@ -1,8 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { heroes } from '../../data/heroes'
 import { HeroCard } from '../heroes/HeroCard';
+import { UiContext } from '../../auth/UiContext';
 
 export const SearchScreen = () => {
+    const { theme } = useContext(UiContext);
 
     const [values, setValues] = useState({
         value1: '',
@@ -32,13 +34,13 @@ export const SearchScreen = () => {
 
     return (
         <div>
-            <h1>Search Screen</h1>
+            <h1 style={{ color: theme.theme === 'light' ? 'black' : 'whitesmoke' }}>Search Screen</h1>
             <hr />
             <div className='row'>
                 <div className='col-5'>
 
                     <form className='mt-1' onSubmit={(e) => handleSearchSubmit(e)}>
-                        <h4>Input Search Submit</h4>
+                        <h4 style={{ color: theme.theme === 'light' ? 'black' : 'whitesmoke' }}>Input Search Submit</h4>
                         <input
                             type='text'
                             placeholder='Type your hero'
@@ -50,14 +52,14 @@ export const SearchScreen = () => {
 
                         <button
                             type='submit'
-                            className='btn mt-3 btn-outline-primary'
+                            className={ theme.theme === 'light' ? 'btn mt-3 btn-outline-dark' : 'btn mt-3 btn-outline-light'}
                             style={{ width: '100%' }}
                         >
                             Search
                         </button>
                     </form>
 
-                    <h4 className='mt-4'>Input Search onKeyDown</h4>
+                    <h4 style={{ color: theme.theme === 'light' ? 'black' : 'whitesmoke' }} className='mt-4'>Input Search onKeyDown</h4>
                     <input
                         type='text'
                         placeholder='Type your hero'
