@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react'
-import { Link, Redirect, useHistory, useParams } from 'react-router-dom'
+import { Redirect, useHistory, useParams } from 'react-router-dom'
 import { getHeroesById } from '../../selectors/getHeroById';
 import { UiContext } from '../../auth/UiContext';
 
@@ -28,7 +28,7 @@ export const HeroScreen = () => {
                 />
             </div>
             <div className='col-8 animate__animated animate__fadeInRight'>
-                <h3 style={{ fontWeight: 'bold'}}> {hero.superhero} </h3>
+                <h3 style={{ fontWeight: 'bold', color: theme.theme === 'dark' && 'white' }}> {hero.superhero} </h3>
                 <ul className='list-group list-group-flush'>
                     <li className='list-group-item'> <b>Alter ego:</b> {hero.alter_ego} </li>
                     <li className='list-group-item'> <b>Publisher:</b> {hero.publisher} </li>
