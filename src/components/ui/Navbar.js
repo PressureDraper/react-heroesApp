@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../auth/AuthContext';
 import { UiContext } from '../../auth/UiContext';
 import { types } from '../../types/types';
 import { styled } from '@mui/material/styles';
-import { FormControlLabel, FormGroup, Switch } from '@mui/material';
+import { Button, FormControlLabel, FormGroup, Switch } from '@mui/material';
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
@@ -53,21 +53,26 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     },
 }));
 
-
-export const Navbar = ({ dispatch }) => {
-    const { user } = useContext(AuthContext);
-    const { theme } = useContext(UiContext);
+export const Navbar = () => {
+    const { user, dispatch: authDispatch } = useContext(AuthContext);
+    const { theme, dispatch: uiDispatch } = useContext(UiContext);
 
     const handleDarkMode = (e) => {
         if (theme.theme === 'light') {
-            dispatch({
+            uiDispatch({
                 type: types.uiDarkModeOn
             });
         } else {
-            dispatch({
+            uiDispatch({
                 type: types.uiDarkModeOff
             });
         }
+    }
+
+    const handleLogout = (e) => {
+        authDispatch({
+            type: types.logout
+        });
     }
 
     return (
@@ -113,7 +118,7 @@ export const Navbar = ({ dispatch }) => {
 
             <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul className="navbar-nav" style={{ marginLeft: 'auto', marginRight: '20px' }}>
-                    <p style={{ margin: 0, padding: 0, marginRight: '20px', marginTop: '9px' }} className='nav-item nav-link text-warning'>
+                    <p style={{ margin: 0, padding: 0, marginRight: '20px', marginTop: '9px' }} className={theme.theme === 'light' ? 'nav-item nav-link text-info' : 'nav-item nav-link text-primary'}>
                         {user.name}
                     </p>
 
@@ -123,18 +128,18 @@ export const Navbar = ({ dispatch }) => {
                             label={theme.theme === 'light' ? "Dark Mode Off" : "Dark Mode On"}
                             sx={{ color: theme.theme === 'light' ? 'whitesmoke' : 'black' }}
                             onChange={handleDarkMode}
-                            checked={theme.theme === 'light' ? false : true }
+                            checked={theme.theme === 'light' ? false : true}
                         />
                     </FormGroup>
 
-                    <NavLink
-                        activeClassName='active'
-                        className="nav-item nav-link"
-                        exact
-                        to="/login"
+                    <Button
+                        color={'secondary'}
+                        sx={ theme.theme === 'light' ? { color: '#83868b', ':hover': { color: 'white' } } : { color: '#2f3032', ':hover': { color: '#060709' } }}
+                        size='small'
+                        onClick={handleLogout}
                     >
                         Logout
-                    </NavLink>
+                    </Button>
                 </ul>
             </div>
         </nav>

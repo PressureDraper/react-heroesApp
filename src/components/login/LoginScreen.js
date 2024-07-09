@@ -6,6 +6,9 @@ export const LoginScreen = ({ history }) => {
     const { dispatch } = useContext(AuthContext);
 
     const handleClick = () => {
+        const memoPath = localStorage.getItem('memoPath') || '/';
+
+        console.log(memoPath);
         dispatch({
             type: types.login,
             payload: {
@@ -13,7 +16,7 @@ export const LoginScreen = ({ history }) => {
             }
         });
 
-        history.push('/marvel'); //don't delete back history
+        history.push(memoPath); //don't delete back history
     }
 
     return (
