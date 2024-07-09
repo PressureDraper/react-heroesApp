@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Switch
 } from "react-router-dom"
 import { LoginScreen } from '../components/login/LoginScreen'
@@ -22,7 +22,7 @@ export const AppRouter = () => {
                         component={LoginScreen}
                         isAuthenticated={user.logged}
                     />
-                    
+
                     <PrivateRoute
                         path="/"
                         component={DashboardRoutes}

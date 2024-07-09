@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../auth/AuthContext';
 import { UiContext } from '../../auth/UiContext';
 import { types } from '../../types/types';
